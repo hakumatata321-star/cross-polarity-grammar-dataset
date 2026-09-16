@@ -13,10 +13,10 @@ The labels are the correspondence: which negative-mode acquisition, if any, was 
 - Raw files: 5
 - Compounds: 11,200, in 700 families of up to 16 mass-matched, spectrally confusable variants
 - Compounds acquired in both modes: 6,983; the rest in one mode only, so that batches contain single-polarity decoys
-- Spectra: 36,366, two replicate acquisitions per compound and mode, 29.3 peaks on average
-- Peak rows: 1,064,775
+- Spectra: 36,366, two replicate acquisitions per compound and mode, 32.5 peaks on average
+- Peak rows: 1,183,539
 - Hidden vocabulary: 64 substructure units; chains of 3 to 6 units
-- Prepared release: 337 training batches, each drawn three times with different replicate spectra (1,011 training cases), and 159 test batches; test compounds appear in no training batch
+- Prepared release: 560 training batches, each drawn three times with different replicate spectra (1,680 training cases), and 263 test batches; test compounds appear in no training batch
 - Data origin: creator-generated synthetic data
 
 ## Raw File Structure
@@ -38,7 +38,7 @@ Every draw and every identifier comes from HMAC-SHA256 keyed to a withheld 256-b
 1. **Grammar.** Draw 64 units, each with a mass between 44 and 176. For each unit and each mode, draw 2 to 5 fragment ions (a fixed sub-mass of the unit plus a mode-specific adduct shift) with base intensities, a propensity for each of the mode's 8 neutral losses, and an end-of-chain intensity boost; with probability 0.15 the unit is silent in that mode. Draw the two loss tables and a sparse table of neighbour-context intensity effects for ordered unit pairs.
 2. **Families.** Each family starts from a seed chain of 3 to 6 units and adds up to 15 variants by substituting one or two units for units of similar mass, so members are mass-matched and share most of their structure.
 3. **Modes.** Each compound is acquired in both modes with probability 0.62, otherwise in one mode only.
-4. **Spectra.** For each acquisition: every non-silent unit emits its fragments with position, context and log-normal intensity jitter (sd 0.35), each retained with probability 0.85, plus neutral-loss peaks by propensity; sequence ions are prefix sums in positive mode and suffix sums in negative mode; the precursor ion and its losses appear with fixed probabilities; 3 to 8 low-intensity noise peaks are added; every m/z receives Gaussian jitter of 0.003. Peaks below 1/999 of the base peak are dropped and at most 80 are kept.
+4. **Spectra.** For each acquisition: every non-silent unit emits its fragments with position, context and log-normal intensity jitter (sd 0.35), each retained with probability 0.85, plus neutral-loss peaks by propensity; sequence ions run along the chain in the mode's own direction (prefix in positive mode, suffix in negative mode) with probability 0.90, and in the opposite direction with probability 0.60, so mass is not concentrated in a narrow band near each unit's own fragments; the precursor ion and its losses appear with fixed probabilities; 3 to 8 low-intensity noise peaks are added; every m/z receives Gaussian jitter of 0.003. Peaks below 1/999 of the base peak are dropped and at most 80 are kept.
 5. **Batches.** The published `prepare.py` groups compounds acquired in both modes into batches of 7 to 10 by mass window and negative-mode spectral similarity, adds mass-matched single-mode decoys on each side, anonymises every spectrum to a slot, and holds out about a third of the batches with their compounds excluded from every training batch.
 
 ## Intended Use And Limitations
