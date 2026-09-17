@@ -1,4 +1,4 @@
-# Cross-Polarity Acquisition Grouping: Synthetic Spectrum Batches Labelled By Which Acquisitions Share A Compound
+# Cross-Polarity Spectrum Batches with Same-Compound Group Labels
 
 ## Overview
 

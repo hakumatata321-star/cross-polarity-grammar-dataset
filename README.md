@@ -1,4 +1,4 @@
-# Cross-Polarity Acquisition Grouping: Synthetic Spectrum Batches Labelled By Which Acquisitions Share A Compound
+# Cross-Polarity Spectrum Batches with Same-Compound Group Labels
 
 900 compound families, 2,700 batches, 103,849 acquisitions and 3,033,843 peaks.
 
