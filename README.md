@@ -12,7 +12,6 @@ which negative-mode acquisition, if any, was produced by the same compound as ea
   HMAC-SHA256 keyed to a withheld secret; the generator code and the secret are not published. This is a
   stylised grammar, not a model of real fragmentation chemistry, and it contains no record of any spectral
   library, no real compound and no third-party material.
-- **This repository holds documentation only.** The spectra themselves are released solely through the
-  challenge platform's prepared files, in which every spectrum is an anonymous slot inside a batch.
+- **This repository holds documentation and the generator.** `gen.py` is the exact code that produced this release, publishable because it needs a withheld secret to run: without it, the code alone regenerates nothing and reveals nothing about the answers. It is here so the construction described below can be read and checked line by line, not only taken on faith. The spectra themselves are released solely through the challenge platform's prepared files, in which every spectrum is an anonymous slot inside a batch.
 - **Full documentation:** [DATASET_DESCRIPTION.md](DATASET_DESCRIPTION.md).
 - **Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Creator: Esmael Abdlkadr, 2026.
